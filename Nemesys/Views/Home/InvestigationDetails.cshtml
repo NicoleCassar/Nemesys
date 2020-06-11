@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+
+@model Nemesys.Models.Investigation
+
+@{
+    ViewData["Title"] = "Investigation Details";
+}
+
+<div class="card" style="width: 90%;padding:20px; margin:20px;">
+    <div class="card-body">
+        <h3 class="card-title">
+            Investigation for @Model.Report.TypeOfHazard - @Model.Report.LocationOfHazard
+        </h3>
+        <p class="small">Posted by @Model.Investigator.Name @Model.Investigator.Surname on @Model.DateOfAction.ToShortDateString()</p>
+        <p class="small">Contact @Model.Investigator.Name  @Model.Investigator.Surname at @Model.Investigator.Email</p>
+        @if (Model.Investigator.PhoneNumber != null)
+        {
+            <span class="small">or @Model.Investigator.PhoneNumber</span>
+        }
+        <p class="card-text">Description: @Model.Description</p>
+        <br />
+
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back to List</a>
+
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (UserManager.GetUserAsync(User).Result.IdNum == Model.Investigator.IdNum)
+            {
+                <a asp-controller="Home" asp-action="EditInvestigation" asp-route-id="@Model.InvestigationId" class="btn btn-outline-secondary">Edit</a>
+                <a asp-controller="Home" asp-action="DeleteInvestigation" asp-route-id="@Model.InvestigationId" class="btn btn-outline-secondary">Delete</a>
+            }
+        }
+
+    </div>
+</div>

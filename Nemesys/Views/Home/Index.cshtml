@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@model Nemesys.ViewModels.ReportListViewModel
+
+@{
+    ViewData["Title"] = "Nemesys";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<h1>Nemesys</h1>
+<h2>Showing @Model.TotalEntries Report Entries</h2>
+<div class="row">
+    @foreach (var report in Model.Reports)
+    {
+    <div class="card" style="width: 18rem;padding:20px; margin:20px;">
+            <img class="card-img-top" src="@report.ImageUrl" alt="Image for @report.LocationOfHazard" />
+            <div class="card-body">
+                <h3 class="card-title">@report.TypeOfHazard - @report.LocationOfHazard</h3>
+                <p class="small">@report.DateOfReport.ToShortDateString()</p>
+
+                <a asp-controller="Home" asp-action="ReportDetails" asp-route-id="@report.ReportId" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+    }
+</div>

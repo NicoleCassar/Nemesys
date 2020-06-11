@@ -1,0 +1,53 @@
+﻿@model Nemesys.ViewModels.EditReport
+
+@{
+    ViewData["Title"] = "Create Report";
+}
+
+<h2>Create Report</h2>
+
+<form asp-action="CreateReport" method="post" role="form" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="LocationOfHazard" class="col-md-2"></label>
+        <div class="col-md-5">
+            <input asp-for="LocationOfHazard" class="form-control" />
+            <span asp-validation-for="LocationOfHazard" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="DateOfSpottedHazard" class="col-md-2"></label>
+        <div class="col-md-5">
+            <input type="datetime" asp-for="DateOfSpottedHazard" class="form-control">
+            <span asp-validation-for="DateOfSpottedHazard" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="TypeOfHazard" class="col-md-2"></label>
+        <div class="col-md-5">
+            <select asp-for="TypeOfHazard" class="form-control" id="typesofhazard" asp-items="ViewBag.typesofhazard">
+                <option value="">Type of Hazard</option>
+            </select>
+            <span asp-validation-for="TypeOfHazard" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="col-md-2"></label>
+        <div class="col-md-5">
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageToUpload" class="col-md-2"></label>
+        <div class="col-md-5">
+            <input type="file" asp-for="ImageToUpload" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-5">
+            <input type="submit" class="btn btn-primary" value="Create Report" />
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </div>
+</form>

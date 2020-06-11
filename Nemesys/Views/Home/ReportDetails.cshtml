@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject IUpvotesRepository UpvotesRepo
+@inject IInvestigationRepository InvestigationRepo
+
+@model Nemesys.Models.Report
+
+@{
+    ViewData["Title"] = "Report Details";
+}
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+<script src="~/js/site.js"></script>
+<div class="card" style="width: 90%;padding:20px; margin:20px;">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form asp-controller="Home" asp-action="Upvotes" asp-route-id="@Model.ReportId" method="post" role="form" enctype="multipart/form-data">
+            <button type="submit" class="btn btn-primary">
+                @if (UpvotesRepo.UpvoteExists(Model, UserManager.GetUserAsync(User).Result) == null)
+                {
+                    // User has not upvoted
+                    <i class="far fa-thumbs-up" onclick="LikeFunction1(this)"></i>
+                }
+                else
+                {
+                    <i class="fas fa-thumbs-up" onclick="LikeFunction2(this)"></i>
+                }
+                Upvote
+                |
+                <span>@Model.Upvotes</span>
+            </button>
+        </form>
+            }
+
+<div class="card-body">
+    <h3 class="card-title">
+        @Model.TypeOfHazard - @Model.LocationOfHazard
+        <span class="badge badge-pill badge-primary">@Model.Status</span>
+    </h3>
+    @if (InvestigationRepo.GetInvestigationByReportId(Model) != null) // if investigation is present, show the button to view investigation
+    {
+        <a asp-controller="Home" asp-action="InvestigationDetails" asp-route-id="@Model.ReportId" class="btn btn-primary">View Investigation</a>
+    }
+    @if (User.IsInRole("Investigator"))
+    {
+        @if (InvestigationRepo.GetInvestigationByReportId(Model) == null) // if no investigation is done, show button. else, show nothing
+        {
+            <span>
+                <a asp-controller="Home" asp-action="CreateInvestigation" asp-route-id="@Model.ReportId" class="btn btn-primary">Create Investigation</a>
+            </span>
+        }
+    }
+
+    <p class="small">Posted by @Model.Reporter.Name @Model.Reporter.Surname on @Model.DateOfReport.ToShortDateString()</p>
+    <p class="card-text">Location of Hazard: @Model.LocationOfHazard</p>
+    <p class="card-text">Type of Hazard: @Model.TypeOfHazard</p>
+    <p class="card-text">Date when hazard was spotted: @Model.DateOfSpottedHazard</p>
+    <p class="card-text">Description: @Model.Description</p>
+    <img class="card-img-top" src="@Model.ImageUrl" alt="Image for @Model.LocationOfHazard" />
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back to List</a>
+
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (UserManager.GetUserAsync(User).Result.IdNum == Model.Reporter.IdNum)
+        {
+            <a asp-controller="Home" asp-action="EditReport" asp-route-id="@Model.ReportId" class="btn btn-outline-secondary">Edit</a>
+            <a asp-controller="Home" asp-action="DeleteReport" asp-route-id="@Model.ReportId" class="btn btn-outline-secondary">Delete</a>
+        }
+    }
+
+</div>
+    </div>

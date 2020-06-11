@@ -1,0 +1,30 @@
+﻿@model Nemesys.ViewModels.ReporterRankingsViewModel
+
+@{
+    ViewData["Title"] = "Reporter Rankings";
+}
+
+<h1>Reporter Rankings</h1>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Ranking #</th>
+                <th scope="col">Name</th>
+                <th scope="col">Number Of Reports</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reporter in Model.Reporter)
+            {
+                Model.Ranking++;
+            <tr>
+                <th scope="row">@Model.Ranking</th>
+                <td>@reporter.Name  @reporter.Surname</td>
+                <td>@reporter.NumberOfReports</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

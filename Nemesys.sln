@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nemesys", "Nemesys\Nemesys.csproj", "{7ADF5B0B-BE6E-4224-A035-E7ABF896A6A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5871A82E-C38E-4718-AE90-8C5E7D709F8E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7ADF5B0B-BE6E-4224-A035-E7ABF896A6A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ADF5B0B-BE6E-4224-A035-E7ABF896A6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ADF5B0B-BE6E-4224-A035-E7ABF896A6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ADF5B0B-BE6E-4224-A035-E7ABF896A6A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {302976C0-0280-41BA-B9C5-8C9D04AA0A78}
+	EndGlobalSection
+EndGlobal

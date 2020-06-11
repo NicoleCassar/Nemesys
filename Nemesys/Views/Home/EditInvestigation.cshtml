@@ -1,0 +1,37 @@
+﻿@model Nemesys.ViewModels.EditInvestigation
+
+@{
+    ViewData["Title"] = "Edit Investigation";
+}
+
+<form asp-action="EditInvestigation" method="post" role="form" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <input asp-for="InvestigationId" type="hidden" class="form-control" />
+    <input asp-for="Report" type="hidden" class="form-control" />
+
+    <h3>Edit Investigation</h3>
+
+    <div class="form-group">
+        <label asp-for="Description" class="col-md-2"></label>
+        <div class="col-md-5">
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Status" class="col-md-2"></label>
+        <div class="col-md-5">
+            <select asp-for="Status" class="form-control" id="status" asp-items="ViewBag.status">
+                <option value="">Status</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-5">
+            <input type="submit" class="btn btn-primary" value="Edit Investigation" />
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </div>
+</form>
