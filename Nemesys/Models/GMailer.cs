@@ -41,11 +41,9 @@ namespace Nemesys.Models
 
             using (var message = new MailMessage(GmailUsername, ToEmail))
             {
-                Attachment FormB = new Attachment(Directory.GetCurrentDirectory() + "\\wwwroot\\files\\FYP2021_Form B - SD.docx", MediaTypeNames.Application.Octet);
                 message.Subject = Subject;
                 message.Body = Body;
                 message.IsBodyHtml = IsHtml;
-                message.Attachments.Add(FormB);
                 smtp.Send(message);
             }
         }

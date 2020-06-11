@@ -52,12 +52,13 @@
     }
 
     <p class="small">Posted by @Model.Reporter.Name @Model.Reporter.Surname on @Model.DateOfReport.ToShortDateString()</p>
-    <p class="card-text">Location of Hazard: @Model.LocationOfHazard</p>
-    <p class="card-text">Type of Hazard: @Model.TypeOfHazard</p>
-    <p class="card-text">Date when hazard was spotted: @Model.DateOfSpottedHazard</p>
-    <p class="card-text">Description: @Model.Description</p>
-    <img class="card-img-top" src="@Model.ImageUrl" alt="Image for @Model.LocationOfHazard" />
+    <p class="card-text"><strong>Location of Hazard: </strong> @Model.LocationOfHazard</p>
+    <p class="card-text"><strong>Type of Hazard: </strong> @Model.TypeOfHazard</p>
+    <p class="card-text"><strong>Date when hazard was spotted: </strong>@Model.DateOfSpottedHazard</p>
+    <p class="card-text"><strong>Description: </strong>@Model.Description</p>
+    <img class="card-img-top" src="@Model.ImageUrl" alt="Image for @Model.LocationOfHazard" style="padding-bottom: 1em; max-height: 500px; width: auto; margin: auto;"/>
 
+    <br/>
     <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back to List</a>
 
 

@@ -9,21 +9,21 @@
 <form asp-action="CreateReport" method="post" role="form" enctype="multipart/form-data">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="LocationOfHazard" class="col-md-2"></label>
+        <label asp-for="LocationOfHazard" class="col-md-2">Location of Hazard</label>
         <div class="col-md-5">
             <input asp-for="LocationOfHazard" class="form-control" />
             <span asp-validation-for="LocationOfHazard" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
-        <label asp-for="DateOfSpottedHazard" class="col-md-2"></label>
+        <label asp-for="DateOfSpottedHazard" class="col-md-4">Date and Time of Spotted Hazard</label>
         <div class="col-md-5">
-            <input type="datetime" asp-for="DateOfSpottedHazard" class="form-control">
+            <input type="datetime-local" asp-for="DateOfSpottedHazard" class="form-control">
             <span asp-validation-for="DateOfSpottedHazard" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
-        <label asp-for="TypeOfHazard" class="col-md-2"></label>
+        <label asp-for="TypeOfHazard" class="col-md-2">Type of Hazard</label>
         <div class="col-md-5">
             <select asp-for="TypeOfHazard" class="form-control" id="typesofhazard" asp-items="ViewBag.typesofhazard">
                 <option value="">Type of Hazard</option>
@@ -32,14 +32,14 @@
         </div>
     </div>
     <div class="form-group">
-        <label asp-for="Description" class="col-md-2"></label>
+        <label asp-for="Description" class="col-md-2">Description</label>
         <div class="col-md-5">
             <textarea asp-for="Description" class="form-control"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
-        <label asp-for="ImageToUpload" class="col-md-2"></label>
+        <label asp-for="ImageToUpload" class="col-md-2">Image</label>
         <div class="col-md-5">
             <input type="file" asp-for="ImageToUpload" class="form-control" />
         </div>

@@ -7,6 +7,7 @@ namespace Nemesys.Models
 {
     public interface IUpvotesRepository
     {
+        IEnumerable<Upvotes> GetAllUpvotes();
         Upvotes GetUpvotesByReportId(Report report);
         Upvotes GetUpvotesByReporterId(ApplicationUser reporter);
         void UndoUpvote(Report report, ApplicationUser reporter);

@@ -13,7 +13,9 @@
     @foreach (var report in Model.Reports)
     {
     <div class="card" style="width: 18rem;padding:20px; margin:20px;">
-            <img class="card-img-top" src="@report.ImageUrl" alt="Image for @report.LocationOfHazard" />
+        <div class="img" style="height:220px; width: 220px; overflow: hidden; margin: auto;">
+            <img class="card-img-top" src="@report.ImageUrl" alt="Image for @report.LocationOfHazard"/>
+        </div>
             <div class="card-body">
                 <h3 class="card-title">@report.TypeOfHazard - @report.LocationOfHazard</h3>
                 <p class="small">@report.DateOfReport.ToShortDateString()</p>

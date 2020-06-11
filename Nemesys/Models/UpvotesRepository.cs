@@ -17,6 +17,18 @@ namespace Nemesys.Models
             _appDbContext = appDbContext;
             _logger = logger;
         }
+        public IEnumerable<Upvotes> GetAllUpvotes()
+        {
+            try
+            {
+                return _appDbContext.Upvotes;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
+        }
 
         public Upvotes GetUpvotesByReporterId(ApplicationUser reporter)
         {
@@ -88,5 +100,7 @@ namespace Nemesys.Models
                 throw;
             }
         }
+
+        
     }
 }

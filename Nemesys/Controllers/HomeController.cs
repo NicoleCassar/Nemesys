@@ -365,7 +365,7 @@ namespace Nemesys.Controllers
 
                     _investigationRepository.CreateInvestigation(investigation);
                     _logger.LogInformation("User " + User.Identity.Name + " created an investigation");
-
+                    Mailer(investigation.Report.Reporter);
                     return RedirectToAction("Index");
                 }
                 else
@@ -477,6 +477,8 @@ namespace Nemesys.Controllers
 
         public IActionResult DeleteReport(int id)
         {
+            Report tempReport = _reportRepository.GetReportsById(id);
+            tempReport.Reporter.NumberOfReports--;
             _reportRepository.DeleteReport(id);
             return RedirectToAction("Index");
         }
@@ -513,6 +515,24 @@ namespace Nemesys.Controllers
         public IActionResult Error()
         {
             return View();
+        }
+
+        public IActionResult Mailer(ApplicationUser user)
+        {
+            GMailer.GmailUsername = "nemesys2020@gmail.com"; // Set email (username)
+            GMailer.GmailPassword = "NemesysMAILER!!"; // Set password
+
+            GMailer mailer = new GMailer(); // create new GMailer object
+            mailer.ToEmail = user.Email; // Set target address
+
+            string body = "Dear " + user.Name + " " +user.Surname + ",<br/><br/>Please note that Investigation updates have been made to one of your Reports! <br/><br/><br/>Regards,<br/>Nemesys";
+        
+            mailer.Subject = "Nemesys: Report Update!"; //Set the subject for the email
+            mailer.Body = body;
+            mailer.IsHtml = true; 
+            mailer.Send(); // Send the email
+
+            return RedirectToAction("Index"); 
         }
 
         /*

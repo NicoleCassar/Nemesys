@@ -100,9 +100,11 @@ namespace Nemesys
                 endpoints.MapControllerRoute(
                     name: "Default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                /*
                 endpoints.MapControllerRoute(
                     name: "404-PageNotFound",
                     pattern: "{controller=Home}/{action=Error}/{id?}");
+                    */
             });
         }
     }

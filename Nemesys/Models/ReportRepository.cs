@@ -138,8 +138,23 @@ namespace Nemesys.Models
                 Report report = GetReportsById(reportId);
 
                 // Remove any constraints first
+
                 Investigation investigation = _appDbContext.Investigation.Include(i => i.Investigator).FirstOrDefault(t => t.Report.ReportId == report.ReportId);
+                if (investigation != null)
+                {
                 _appDbContext.Investigation.Remove(investigation);
+                _appDbContext.SaveChanges();
+                }
+
+                IEnumerable<Upvotes> upvotes = _appDbContext.Upvotes;
+
+                foreach (Upvotes upvote in upvotes)
+                {
+                    if (upvote.Report.ReportId == reportId)
+                    {
+                        _appDbContext.Upvotes.Remove(upvote);
+                    }
+                }
                 _appDbContext.SaveChanges();
 
                 _appDbContext.Report.Remove(report);
